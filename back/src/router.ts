@@ -1,9 +1,10 @@
 import { Router } from 'express'
-import { firstController } from './app/controller/FirstController'
+import { GeneratorController, GeneratorService } from './app/modules/Generator'
 
+const generatorService = new GeneratorService()
+const generatorController = new GeneratorController(generatorService)
 const router: Router = Router()
 
-//Routes
-router.get('/', firstController.home)
+router.get('/generate', generatorController.generate)
 
 export { router }
